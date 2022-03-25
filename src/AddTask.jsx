@@ -1,15 +1,15 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 function AddTask({ add }) {
   const [text, setText] = useState('');
 
-  function addTask() {
+  const addTask = useCallback(() => {
     if (text.trim().length) {
       add(text);
       setText('');
     }
-  }
+  }, [text]);
 
   function onChange(e) {
     setText(e.target.value);

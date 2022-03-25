@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-filename-extension */
 /* eslint-disable no-param-reassign */
 /* eslint-disable react/jsx-no-bind */
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import './App.css';
 import AddTask from './AddTask';
 import List from './List';
@@ -13,36 +13,36 @@ function App() {
     { id: 3, text: 'task 3', complited: false },
   ]);
 
-  function changeText(text, id) {
+  const changeText = useCallback((text, id) => {
     setTasks(tasks.map((i) => {
       if (id === i.id) {
         i.text = text;
       }
       return i;
     }));
-  }
+  }, [tasks]);
 
-  function deleteItem(id) {
+  const deleteItem = useCallback((id) => {
     setTasks(tasks.filter((item) => item.id !== id));
-  }
+  }, [tasks]);
 
-  function setComplited(id) {
+  const setComplited = useCallback((id) => {
     setTasks(tasks.map((i) => {
       if (id === i.id) {
         i.complited = !i.complited;
       }
       return i;
     }));
-  }
+  }, [tasks]);
 
-  function add(text) {
+  const add = useCallback((text) => {
     setTasks([...tasks,
       {
         id: Date.now(),
         text,
         complited: false,
       }]);
-  }
+  }, [tasks]);
 
   return (
     <div className="App">

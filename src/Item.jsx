@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faPencil, faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 
@@ -9,10 +9,10 @@ function Item({
   const [activeInput, setActiveInput] = useState(true);
   const [text, setText] = useState(task.text);
 
-  function confirmChange() {
+  const confirmChange = useCallback(() => {
     setActiveInput(true);
     changeText(text, task.id);
-  }
+  }, [activeInput, text]);
 
   function onClick() {
     setComplited(task.id);
