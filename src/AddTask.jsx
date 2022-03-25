@@ -11,10 +11,16 @@ function AddTask({ add }) {
     }
   }
 
+  function onChange(e) {
+    setText(e.target.value);
+  }
+  function onClick() {
+    addTask();
+  }
   return (
     <div className="input-group">
-      <input type="text" className="form-control" value={text} onChange={(e) => setText(e.target.value)} />
-      <button className="btn btn-outline-secondary" type="button" onClick={() => addTask()}>Add task</button>
+      <input type="text" className="form-control" value={text} onChange={onChange} />
+      <button className="btn btn-outline-secondary" type="button" onClick={onClick}>Add task</button>
     </div>
   );
 }

@@ -13,6 +13,13 @@ function Item({
     setActiveInput(true);
     changeText(text, task.id);
   }
+
+  function onClick() {
+    setComplited(task.id);
+  }
+  function onChange(e) {
+    setText(e.target.value);
+  }
   return (
     <li className="list-group-item">
       <div className="form-check item">
@@ -21,7 +28,7 @@ function Item({
             className="form-check-input checkbox"
             type="checkbox"
             id={task.id}
-            onClick={() => setComplited(task.id)}
+            onClick={onClick}
           />
           <label className="form-check-label" htmlFor={task.id}>
             <input
@@ -30,7 +37,7 @@ function Item({
                 ? 'form-control complited'
                 : 'form-control'}
               value={text}
-              onChange={(e) => setText(e.target.value)}
+              onChange={onChange}
               disabled={activeInput}
             />
           </label>
